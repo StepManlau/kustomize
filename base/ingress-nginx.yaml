@@ -5,12 +5,12 @@ metadata:
   name: clinic-ingress
 spec:
   rules:
-  - http:
-      paths:
-      - pathType: Prefix
-        path: / # On fait référence au contexte de l'application
-        backend:
-          service:
-            name: clinic-service
-            port:
-              number: 8080
+    - http:
+        paths:
+        - pathType: Prefix
+          path: /
+          backend:
+            service:
+              name: clinic-service
+              port:
+                number: 8080
