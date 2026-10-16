@@ -11,14 +11,14 @@ spec:
         # Nouvelle variable d'environnement : contexte applicatif = /tp7
         env:
         - name: SERVER_SERVLET_CONTEXT_PATH
-          value: "/tp7"
+          value: "/"
         
         # Patch 1 : remplacer (et corriger) la sonde de démarrage
         # $patch: replace signifie "remplace complètement cet objet"
         startupProbe:
           $patch: replace
           httpGet:
-            path: /tp7/actuator/health/readiness  # Chemin adapté au contexte
+            path: /actuator/health/readiness  # Chemin adapté au contexte
             port: 8080
           timeoutSeconds: 2
           periodSeconds: 10
@@ -29,7 +29,7 @@ spec:
         livenessProbe:
           $patch: replace
           httpGet:
-            path: /tp7/actuator/health/liveness
+            path: /actuator/health/liveness
             port: 8080
           timeoutSeconds: 2
           periodSeconds: 10
@@ -40,7 +40,7 @@ spec:
         readinessProbe:
           $patch: replace
           httpGet:
-            path: /tp7/actuator/health/readiness
+            path: /actuator/health/readiness
             port: 8080
           timeoutSeconds: 2
           periodSeconds: 10
@@ -58,7 +58,7 @@ spec:
   - http:
       paths:
       - pathType: Prefix
-        path: /tp7  # Changé de / à /tp7
+        path: /  # Changé de / à /tp7
         backend:
           service:
             name: clinic-service
